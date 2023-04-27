@@ -1,0 +1,42 @@
+// Program to calculate salary depending on amount earned and hours worked
+#include <iostream>
+
+using namespace std;
+
+class Info{
+    private:
+        float salary;
+        int hours;
+    public:
+        void getInfo(float sal, int hour){
+            salary=sal;
+            hours=hour;
+        }
+        void AddSal(){
+            if (salary<500){
+                salary+=10;
+            }
+        }
+        void AddWork(){
+            if (hours>6){
+                salary+=5;
+            }
+        }
+        void displaySalary(){
+            cout<<"Final Salary: $" <<salary<<endl;
+        }
+    };
+
+int main() {
+    Info employee;
+    float salary;
+    int hours;
+    cin>>salary;
+    cin>>hours;
+    employee.getInfo(salary,hours);
+    employee.AddSal();
+    employee.AddWork();
+    employee.displaySalary();
+
+    return 0;
+}
