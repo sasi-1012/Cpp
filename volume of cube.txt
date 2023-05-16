@@ -1,0 +1,23 @@
+// Program to find the volume  of cube
+#include <iostream>
+#include<cmath>
+
+class cube{
+    public:
+        int length;
+        int volume;
+        cube(){
+            std::cout<<"Enter the length of one side: ";
+            std::cin>>length;
+        }
+        void vol_calc(){
+            volume=pow(length,3);
+            std::cout<<"The volume is: "<<volume;
+        }
+};
+int main() {
+    cube a;
+    a.vol_calc();
+
+    return 0;
+}
