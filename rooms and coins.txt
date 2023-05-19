@@ -1,0 +1,63 @@
+#include <stdio.h>
+#include <stdlib.h>
+// Function to find the starting and ending room numbers
+void find_rooms(int N, int coins[], int K) {
+ // Initialize the 2D array dp with False values
+ int dp[N+1][K+1];
+ for (int i = 0; i <= N; i++) {
+ for (int j = 0; j <= K; j++) {
+ dp[i][j] = 0;
+ }
+ }
+ // Base case: It is possible to form a sum of zero using zero rooms
+ dp[0][0] = 1;
+ // Fill the remaining cells of the dp array
+ int start_room = -1;
+ for (int i = 1; i <= N; i++) {
+ for (int j = 0; j <= K; j++) {
+ if (coins[i-1] > j) {
+ // Can't include the coins from the ith room
+ dp[i][j] = dp[i-1][j];
+ }
+ else {
+ // Either include or exclude the coins from the ith room
+ dp[i][j] = dp[i-1][j] || dp[i-1][j-coins[i-1]];
+ }
+ // If we have found a subsequence with sum K, update start_room
+ if (dp[i][j] && start_room == -1) {
+ start_room = i;
+ }
+ }
+ }
+ // If no subsequence with sum K was found, return
+ if (start_room == -1) {
+ printf("No solution exists.\n");
+ return;
+ }
+ // Find the end room
+ int j = K, end_room = 0;
+ for (int i = N; i >= 1; i--) {
+ if (dp[i][j] && coins[i-1] <= j) {
+ j -= coins[i-1];
+ end_room = i;
+ }
+ }
+ // Print the start and end room numbers
+ printf("Start Room: %d\n", start_room);
+ printf("End Room: %d\n", end_room);
+}
+// Driver code
+int main() {
+ int N, K;
+ printf("Enter the number of rooms: ");
+ scanf("%d", &N);
+ int coins[N];
+ printf("Enter the number of coins in each room:\n");
+ for (int i = 0; i < N; i++) {
+ scanf("%d", &coins[i]);
+ }
+ printf("Enter the required number of coins: ");
+ scanf("%d", &K);
+ find_rooms(N, coins, K);
+ return 0;
+}
