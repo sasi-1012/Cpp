@@ -1,0 +1,13 @@
+//rolling dice
+#include<iostream>
+#include<cstdlib>
+#include<ctime>
+int main(){
+    const short minvalue=1;
+    const short maxvalue=6;
+    srand(time(0));
+    short first = (rand()%(maxvalue-minvalue+1))+minvalue;
+    short second = (rand()%(maxvalue-minvalue+1))+minvalue;
+    std::cout<<first<<","<<second;
+    return 0;
+}
