@@ -1,0 +1,15 @@
+// Program to display sales,state tax and county tax.
+#include <iostream>
+int main() {
+    float sales,state_tax,county_tax;
+    std::cout<<"Enter sales cost: ";
+    std::cin>>sales;
+    std::cout<<"Enter state tax %: ";
+    std::cin>>state_tax;
+    std::cout<<"Enter county tax %: ";
+    std::cin>>county_tax;
+    std::cout<<"Sales=$"<<sales<<"\n";
+    std::cout<<"State Tax=$"<<sales*(state_tax/100)<<"\n";
+    std::cout<<"County Tax=$"<<sales*(county_tax/100)<<"\n";
+    return 0;
+}
